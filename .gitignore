@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+backend/venv/
+backend/.venv/
+venv/
+.venv/
+ENV/
+env/
+*.egg-info/
+.pytest_cache/
+
+# Node / Next.js
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/build/
+.pnp
+.pnp.js
+
+# Environment and sensitive data
+.env.local
+.env.*.local
+backend/data/sessions/*.csv
+backend/data/sessions/*.json
+!backend/data/sessions/.gitkeep
+
+# IDE & OS
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db

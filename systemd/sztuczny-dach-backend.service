@@ -1,0 +1,17 @@
+[Unit]
+Description=Sztuczny Dach - Coating Reflectivity Testbed Backend
+After=network.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/pblpbl/backend
+EnvironmentFile=/home/pi/pblpbl/.env
+Environment="GPIOZERO_PIN_FACTORY=lgpio"
+Environment="PYTHONUNBUFFERED=1"
+ExecStart=/home/pi/pblpbl/backend/venv/bin/python -m uvicorn main:app --host 0.0.0.0 --port 8000
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

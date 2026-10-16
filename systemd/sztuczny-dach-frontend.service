@@ -1,0 +1,16 @@
+[Unit]
+Description=Sztuczny Dach - Coating Reflectivity Testbed Web Dashboard
+After=network.target sztuczny-dach-backend.service
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/pblpbl/frontend
+Environment="NODE_ENV=production"
+Environment="PORT=3000"
+ExecStart=/usr/bin/npm start
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

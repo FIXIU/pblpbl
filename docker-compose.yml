@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: sztuczny-dach-backend
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    volumes:
+      - ./backend/data/sessions:/app/data/sessions
+    # When deployed on Raspberry Pi with real hardware:
+    # privileged: true
+    # devices:
+    #   - /dev/gpiomem:/dev/gpiomem
+    #   - /dev/spidev0.0:/dev/spidev0.0
+    #   - /dev/i2c-1:/dev/i2c-1
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: sztuczny-dach-frontend
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_BACKEND_URL=http://localhost:8000
+      - NEXT_PUBLIC_WS_URL=ws://localhost:8000/ws/telemetry
+    depends_on:
+      - backend
